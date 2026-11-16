@@ -1,1 +1,92 @@
+/* 
+  Pustaka Pelajar - Responsive Stylesheet
+  File: assets/css/responsive.css
+  Description: Supplementary media queries for mobile and tablet devices
+*/
+
+/* Small devices (Phones, up to 640px) */
+@media screen and (max-width: 640px) {
+  .max-w-6xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  header .flex-col {
+    align-items: stretch;
+  }
+
+  #bookGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .book-card {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  #categoryFilters {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #categoryFilters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-btn {
+    flex-shrink: 0;
+  }
+
+  footer .flex-col {
+    text-align: center;
+    gap: 1rem;
+  }
+
+  footer .flex {
+    justify-content: center;
+  }
+}
+
+/* Medium devices (Tablets, 641px to 1024px) */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .max-w-6xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #bookGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Large devices (Desktops, 1025px and above) */
+@media screen and (min-width: 1025px) {
+  #bookGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
 
