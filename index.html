@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pustaka Pelajar - Pencari Referensi Buku</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-slate-900">PustakaPelajar</span>
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#" class="hover:text-slate-950 transition-colors">Beranda</a>
+                <a href="#kategori" class="hover:text-slate-950 transition-colors">Kategori</a>
+                <a href="#koleksi" class="hover:text-slate-950 transition-colors">Koleksi</a>
+                <a href="#tentang" class="hover:text-slate-950 transition-colors">Tentang</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero & Search Section -->
+        <section class="bg-white border-b border-slate-200 py-16 px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+                    Temukan Referensi Belajar Terbaik
+                </h1>
+                <p class="text-slate-600 mb-8 text-base sm:text-lg">
+                    Cari ribuan referensi makalah, biografi tokoh, dan karya ilmiah untuk menunjang tugas sekolah dan penelitian Anda.
+                </p>
+                <div class="relative max-w-2xl mx-auto">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Cari berdasarkan judul buku, penulis, atau topik makalah..." 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3.5 pl-12 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm sm:text-base"
+                    >
+                    <svg class="w-5 h-5 text-slate-400 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter & Results Section -->
+        <section id="koleksi" class="max-w-6xl mx-auto px-4 py-12">
+            <!-- Filter Kategori -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="categoryFilters">
+                <button data-category="Semua" class="category-btn px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 text-white transition-colors">Semua</button>
+                <button data-category="Sejarah" class="category-btn px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">Sejarah</button>
+                <button data-category="Biografi" class="category-btn px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">Biografi</button>
+                <button data-category="Sains" class="category-btn px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">Sains</button>
+                <button data-category="Ekonomi" class="category-btn px-4 py-2 rounded-lg text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">Ekonomi</button>
+            </div>
+
+            <!-- Card Grid -->
+            <div id="bookGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Data akan dimasukkan melalui JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <p class="text-slate-500 text-base">Tidak ada referensi buku yang sesuai dengan pencarian Anda.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 gap-4">
+            <p>&copy; 2026 PustakaPelajar. Hak cipta dilindungi.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-900 transition-colors">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Syarat Ketentuan</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Bantuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Interactivity -->
+    <script>
+        const books = [
+            {
+                id: 1,
+                title: "Sejarah Pergerakan Nasional Indonesia",
+                author: "Dr. A. Effendi",
+                category: "Sejarah",
+                type: "Makalah & Buku Referensi",
+                year: 2022,
+                description: "Kajian mendalam mengenai fase kebangkitan nasional hingga perumusan kemerdekaan Indonesia."
+            },
+            {
+                id: 2,
+                title: "Biografi Ki Hadjar Dewantara: Bapak Pendidikan",
+                author: "Sartono Kartodirdjo",
+                category: "Biografi",
+                type: "Biografi Tokoh",
+                year: 2020,
+                description: "Menelusuri jejak perjuangan pendiri Taman Siswa dalam memajukan sistem pendidikan pribumi."
+            },
+            {
+                id: 3,
+                title: "Pengantar Teori Ekonomi Makro dan Mikro",
+                author: "Prof. Dr. M. Sadli",
+                category: "Ekonomi",
+                type: "Karya Ilmiah",
+                year: 2023,
+                description: "Panduan komprehensif bagi pelajar untuk memahami indikator pasar, inflasi, dan kebijakan fiskal."
+            },
+            {
+                id: 4,
+                title: "Ekosistem dan Keanekaragaman Hayati Nusantara",
+                author: "Dr. Ir. Hj. Siti Nuraini",
+                category: "Sains",
+                type: "Karya Ilmiah",
+                year: 2021,
+                description: "Analisis ilmiah mengenai flora, fauna, serta upaya konservasi lingkungan hidup di Indonesia."
+            },
+            {
+                id: 5,
+                title: "Dinamika Politik Masa Demokrasi Parlementer",
+                author: "Herbert Feith",
+                category: "Sejarah",
+                type: "Makalah",
+                year: 2019,
+                description: "Studi komprehensif mengenai jatuh bangun kabinet pada era awal kemerdekaan Republik Indonesia."
+            },
+            {
+                id: 6,
+                title: "Mohammad Hatta: Ekonom dan Negarawan",
+                author: "Bulan Hatta",
+                category: "Biografi",
+                type: "Biografi Tokoh",
+                year: 2021,
+                description: "Kisah hidup Wakil Presiden pertama RI serta pemikiran besarnya tentang sistem koperasi."
+            },
+            {
+                id: 7,
+                title: "Prinsip Dasar Fisika Kuantum Modern",
+                author: "Yohanes Surya, Ph.D.",
+                category: "Sains",
+                type: "Buku Referensi",
+                year: 2022,
+                description: "Pengenalan konsep dasar fisika modern yang disederhanakan untuk pelajar tingkat lanjut."
+            },
+            {
+                id: 8,
+                title: "Peran UMKM dalam Perekonomian Digital",
+                author: "Dr. Rhenald Kasali",
+                category: "Ekonomi",
+                type: "Karya Ilmiah",
+                year: 2023,
+                description: "Riset empiris tentang transformasi bisnis kecil menuju era perdagangan elektronik masa kini."
+            }
+        ];
+
+        let currentCategory = "Semua";
+        let searchQuery = "";
+
+        const searchInput = document.getElementById('searchInput');
+        const bookGrid = document.getElementById('bookGrid');
+        const emptyState = document.getElementById('emptyState');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        function renderBooks() {
+            const filtered = books.filter(book => {
+                const matchesCategory = currentCategory === "Semua" || book.category === currentCategory;
+                const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      book.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            bookGrid.innerHTML = "";
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(book => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition-all shadow-sm";
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-md">${book.category}</span>
+                                <span class="text-slate-400 text-xs">${book.year}</span>
+                            </div>
+                            <h3 class="font-semibold text-slate-900 text-base mb-1 line-clamp-2">${book.title}</h3>
+                            <p class="text-xs text-slate-500 mb-3">${book.author}</p>
+                            <p class="text-sm text-slate-600 line-clamp-3 mb-4">${book.description}</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-500 font-medium">${book.type}</span>
+                            <button class="text-xs font-semibold text-slate-900 hover:underline">Baca Detail</button>
+                        </div>
+                    `;
+                    bookGrid.appendChild(card);
+                });
+            }
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderBooks();
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                    btn.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+                });
+                button.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+                button.classList.add('bg-slate-900', 'text-white');
+
+                currentCategory = button.getAttribute('data-category');
+                renderBooks();
+            });
+        });
+
+        // Initial render
+        renderBooks();
+    </script>
+</body>
+</html>
 
