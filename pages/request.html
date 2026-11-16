@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usul Buku Referensi - Pustaka Pelajar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-slate-900">PustakaPelajar</span>
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="../index.html" class="hover:text-slate-950 transition-colors">Beranda</a>
+                <a href="about.html" class="hover:text-slate-950 transition-colors">Tentang</a>
+                <a href="request.html" class="text-slate-950 font-semibold">Usul Buku</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
+        <!-- Breadcrumb / Back Navigation -->
+        <div class="mb-8">
+            <a href="../index.html" class="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+                Kembali ke Beranda
+            </a>
+        </div>
+
+        <!-- Form Section Container -->
+        <section class="bg-white border border-slate-200 rounded-xl p-8 sm:p-12 shadow-sm">
+            <div class="mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-2">
+                    Usulkan Buku Referensi Baru
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Lengkapi formulir di bawah ini untuk mengajukan usulan penambahan judul buku, makalah, atau referensi ilmiah yang Anda butuhkan untuk menunjang tugas akademik.
+                </p>
+            </div>
+
+            <!-- Request Form -->
+            <form id="requestForm" class="space-y-6">
+                <div>
+                    <label for="bookTitle" class="block text-sm font-medium text-slate-700 mb-2">Judul Buku atau Makalah</label>
+                    <input 
+                        type="text" 
+                        id="bookTitle" 
+                        required 
+                        placeholder="Contoh: Sejarah Ekonomi Politik Indonesia" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm sm:text-base"
+                    >
+                </div>
+
+                <div>
+                    <label for="bookAuthor" class="block text-sm font-medium text-slate-700 mb-2">Nama Penulis atau Penyusun</label>
+                    <input 
+                        type="text" 
+                        id="bookAuthor" 
+                        required 
+                        placeholder="Contoh: Prof. Dr. Mubyarto" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm sm:text-base"
+                    >
+                </div>
+
+                <div>
+                    <label for="bookCategory" class="block text-sm font-medium text-slate-700 mb-2">Kategori Referensi</label>
+                    <select 
+                        id="bookCategory" 
+                        required 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm sm:text-base"
+                    >
+                        <option value="" disabled selected>Pilih kategori referensi</option>
+                        <option value="Sejarah">Sejarah</option>
+                        <option value="Biografi">Biografi</option>
+                        <option value="Sains">Sains</option>
+                        <option value="Ekonomi">Ekonomi</option>
+                        <option value="Sastra">Sastra</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="bookReason" class="block text-sm font-medium text-slate-700 mb-2">Alasan Kebutuhan untuk Tugas atau Makalah</label>
+                    <textarea 
+                        id="bookReason" 
+                        rows="4" 
+                        required 
+                        placeholder="Jelaskan secara singkat mengapa buku ini penting untuk referensi makalah atau tugas sekolah Anda..." 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900 focus:bg-white transition-all text-sm sm:text-base resize-y"
+                    ></textarea>
+                </div>
+
+                <div>
+                    <button 
+                        type="submit" 
+                        class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 px-6 rounded-lg transition-colors text-sm sm:text-base"
+                    >
+                        Kirim Usulan Referensi
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Notification Message (Hidden by default) -->
+            <div id="successMessage" class="hidden mt-6 p-4 bg-slate-100 border border-slate-300 rounded-lg text-center">
+                <p class="text-sm font-medium text-slate-900">Usulan referensi buku berhasil dikirim.</p>
+                <p class="text-xs text-slate-600 mt-1">Terima kasih atas kontribusi Anda. Tim kami akan meninjau usulan ini untuk ditambahkan ke dalam pustaka.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 gap-4">
+            <p>&copy; 2026 PustakaPelajar. Hak cipta dilindungi.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-900 transition-colors">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Syarat Ketentuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Form Interactivity Script -->
+    <script>
+        const requestForm = document.getElementById('requestForm');
+        const successMessage = document.getElementById('successMessage');
+
+        requestForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Sembunyikan form dan tampilkan pesan sukses
+            requestForm.reset();
+            successMessage.classList.remove('hidden');
+
+            // Sembunyikan kembali pesan sukses setelah beberapa detik jika diperlukan, atau biarkan terlihat
+        });
+    </script>
+</body>
+</html>
 
